@@ -1,0 +1,381 @@
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dosis&family=Newsreader:wght@300&display=swap');
+
+:root{
+    --TotalXSize:100vw;
+    --TotalYSize:100vh;
+
+    --UsableXSize :78vw;
+    --UsableYSize : 85vh;
+
+    --FrontWidth:28vw;
+    --FrontHeight:85vh;
+}
+
+@keyframes startSwappingFront {
+    0%   {width: 28vw;margin-left: 0;}
+    33%  {width: 38vw;margin-left: 15vw;}
+
+    /* 50%  {width: 38vw;margin-left: 20vw;} */
+    
+    66%  {width: 38vw;margin-left: 35vw;}
+    90% {width: 31vw;margin-left: 47vw;}
+    100% {width: 28vw;margin-left: 50vw;}
+}
+@keyframes startSwappingFrontBack {
+    0%   {width: 28vw;margin-left: 50vw;}
+    33%  {width: 38vw;margin-left: 25vw;}
+    
+    /* 50%  {width: 38vw;margin-left: 20vw;} */
+    
+    66%  {width: 38vw;margin-left: 5vw;}
+    90%  {width: 31vw;margin-left:0vw;}
+    100% {width: 28vw;margin-left: 0;}
+}
+
+@keyframes moveRight{
+    from { margin-left: 0; }
+    to { margin-left: 28vw;}
+}
+
+@keyframes moveLeft{
+    from {margin-left: 28vw;}
+    to {margin-left: 0;}
+}
+
+body{
+    overflow: hidden;
+    background: fixed;
+    background-color: rgba(221, 221, 221, 0.356);
+    
+    position: absolute;
+    height: var(--TotalYSize);
+    width: var(--TotalXSize);
+    margin: 0;
+
+    box-sizing: border-box;
+    font-family: 'Newsreader', serif;
+    
+}
+
+
+#marginAutoAuto{
+    width: var(--UsableXSize);
+    height: var(--UsableYSize);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    border-radius: 18px;
+    box-sizing: border-box;
+    overflow: hidden;
+    background-color: white;
+
+}
+
+#basePartSignUp.active,#basePartLogin.active{
+    opacity: 1;
+}
+
+#basePartLogin>div, #basePartSignUp>div{
+    padding: 2rem;
+    box-sizing: border-box;
+    width: 50vw;
+    height: var(--UsableYSize);
+    margin: auto auto;
+    font-size: x-large;
+    text-align: center;
+}
+
+#basePartSignUp{
+    position: fixed;
+    width: 50vw;
+    height: var(--UsableYSize);
+    margin-left: 28vw;
+    background-color: white;
+    opacity : 0;
+    z-index: 30;
+    /* transition: opacity 0.25s linear; */
+}
+
+#basePartLogin{
+    position: fixed;
+    width: var(--UsableXSize) - var(--FrontWidth);
+    height: var(--UsableYSize);
+    margin-left: 28vw;
+    background-color: white;
+    opacity : 0;
+    z-index: 20;
+    /* transition: opacity 0.125s linear; */
+}
+#FrontPart{
+    position: fixed;
+    width: 28vw;
+    height: var(--FrontHeight);
+    margin-left: 0;
+    background-color: #3AB19B;
+    z-index: 40;
+}
+
+
+
+
+#basePartSignUp .active.runAnimation,#basePartLogin .active.runAnimation{
+    animation-name: startSwapping;
+}
+
+#FrontPart.runAnimation{
+    animation-name: startSwappingFront;
+    animation-duration: 0.5s;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+#FrontPart.runAnimationReverse{
+    animation-name: startSwappingFrontBack;
+    animation-duration: 0.5s;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+
+#WelcomeBack{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+    width: 100%;
+    margin: auto auto;
+    padding: 2rem 1rem;
+    box-sizing: border-box;
+    color: white;
+}
+
+#WelcomeBackDiv1{
+    position: absolute;
+    top: 20%;
+    left: 3%;
+}
+#WelcomeBackDiv2{
+    position: absolute;
+    top: 20%;
+    right: 3%;
+}
+
+#WelcomeBackDiv1,#WelcomeBackDiv2{
+    width: 21vw;
+    margin-top: 4vh;
+    /* display: none; */
+    color: white;
+    opacity: 0;
+    z-index: 41;
+    /* transition: display 0.5s ease-out; */
+    transition: all 0.5s ease-out;
+}
+#WelcomeBackDiv1.FrontActive{
+    opacity : 1;
+    left: 5%;
+}
+#WelcomeBackDiv2.FrontActive{
+    opacity : 1;
+    right: 5%;
+}
+.heading{
+    font-size: 1.6rem;
+    box-sizing: border-box;
+    text-align: center;
+    word-spacing: 0.45rem;
+    font-family: 'Dosis', sans-serif;
+}
+.description{
+    font-size: 1.15rem;
+    margin: 1rem auto;
+    margin-top: 5vh;
+    box-sizing: border-box;
+    text-align: center;
+    word-spacing: 0.48rem;
+    font-family: 'Dosis', sans-serif;
+    width: 90%;
+}
+.permanent{
+    margin-left: 0 !important;
+}
+#SignInButton{
+    position: absolute;
+    top:55%;
+    margin-top: 2rem;
+    width: 60%;
+    border: 1px solid white;
+    cursor: pointer;
+    padding: 1rem;
+    border-radius: 3rem;
+    color: white;
+    height: 3rem;
+    background: transparent;
+}
+
+
+.OpacityOut{
+    opacity: 0;
+    transition: opacity 0.125s ease-out;
+}
+.OpacityIn{
+    opacity: 1;
+    transition: opacity 0.125s ease-in;
+}
+
+#WelcomeBackDiv1 .heading h2, #WelcomeBackDiv2 .heading h2{
+    font-size: 2em;
+}
+
+.moveRight{
+    animation-name: moveRight;
+    animation-timing-function: ease;
+    animation-duration: 0.5s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+.moveLeft{
+    animation-name: moveLeft;
+    animation-timing-function: linear;
+    animation-duration: 0.5s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+.FormPart{
+    margin-top: 10vh !important;
+}
+.IconsCSS{
+    display: flex;
+    margin: auto;
+    justify-content: center;
+}
+.IconsCSS button{
+    background-color: transparent;
+    border-radius: 50%;
+    margin: 1rem;
+    height: 3rem;
+    width: 3rem;
+    overflow: hidden;
+    border: 1px solid rgb(218, 218, 218);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.headingBack{
+    font-size: 1.6em !important;
+    color: #3AB19B;
+    word-spacing: 0.5rem;
+}
+
+.extraInfo1{
+    font-size: 1rem;
+    color: rgb(128, 128, 128);
+    word-spacing: 0.5rem;
+    margin-top: 2rem;
+    font-weight: 500;
+}
+.InputDivMain{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.InputDiv{
+    width: 55%;
+    padding: 0.5rem 1.5rem;
+    margin: 0.5rem 0;
+    background-color: rgb(236, 236, 236);
+    display: flex;
+    align-items: center;
+    height: 4rem;
+    border-radius: 5px;
+}
+input{
+    border: 0;
+    margin-left: 1rem;
+    color: rgb(51, 51, 51);
+    background-color: transparent;
+    flex-grow: 1;
+    font-size: 1rem;
+}
+input:focus,input:active,input:hover{
+    border:0;
+    box-shadow: 0;
+    outline: 0;
+}
+.InputDiv i{
+    color: grey;
+}
+.InputDiv1{
+    width: 55%;
+    padding: 0.5rem 1.5rem;
+    margin: 0.5rem 0;
+    display: flex;
+    align-items: center;
+    height: 4rem;
+    border-radius: 5px;
+}
+.forgotPassword{
+    margin: auto;
+    font-size: 1.2rem;
+    color: rgb(40,40,40);
+    padding-bottom: .5rem;
+    border-bottom: 1px solid rgb(150, 150, 150);
+}
+
+.SubmitButton{
+    font-size: 1rem;
+    width: 100%;
+    padding: 1rem;
+    border-radius: 4rem;
+    background-color: #3ab19b;
+    border: 0;
+    color: white;
+}
+.submitButtonDiv{
+    margin:  0 auto;
+    margin-top: 5vh;
+    width: 25%;
+}
+
+/* Decorations */
+.triangle-left {
+    position: absolute;
+	width: 0;
+	height: 0;
+	
+    transform: rotateX(-10deg);
+    overflow: hidden;
+    mix-blend-mode: overlay;
+    z-index: 41;
+}
+.triangle-left1 {
+    position: absolute;
+	width: 0;
+	height: 0;
+
+    transform: rotateX(-10deg);
+    overflow: hidden;
+    z-index: 0;
+}
+.circle-left{
+    /* #FBCD44 */
+    position: absolute;
+    border-radius: 50%;
+    overflow: hidden;
+    z-index: 41;
+    mix-blend-mode: overlay;
+
+}
+.circle-left1{
+    position: absolute;
+    border-radius: 50%;
+    overflow: hidden;
+    z-index: 0;
+}
+
